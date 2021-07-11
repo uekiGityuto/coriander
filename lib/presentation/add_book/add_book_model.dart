@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:coriander/domain/Book.dart';
 import 'package:flutter/cupertino.dart';
 
 class AddBookModel extends ChangeNotifier {
@@ -12,6 +13,14 @@ class AddBookModel extends ChangeNotifier {
     await books.add({
       'title': this.title,
     });
-    notifyListeners();
+    // notifyListeners();
+  }
+
+  Future<void> updateBook(Book book) async {
+    CollectionReference books = FirebaseFirestore.instance.collection('books');
+    await books.doc(book.documentId).update({
+      'title': this.title,
+    });
+    // notifyListeners();
   }
 }

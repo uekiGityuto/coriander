@@ -1,8 +1,9 @@
+import 'package:coriander/presentation/login/login_page.dart';
+import 'package:coriander/presentation/signup/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'main_model.dart';
-import '../book_list/book_list_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,13 +36,19 @@ class MyApp extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                      child: Text('ボタン'),
+                      child: Text('サインアップ'),
                       onPressed: () {
-                        // model.changeKboyText();
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => BookListPage()),
+                          MaterialPageRoute(builder: (context) => SignupPage()),
+                        );
+                      }),
+                  ElevatedButton(
+                      child: Text('ログイン'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       })
                 ],

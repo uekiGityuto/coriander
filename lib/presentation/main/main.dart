@@ -1,3 +1,4 @@
+import 'package:coriander/presentation/book_list/book_list_page.dart';
 import 'package:coriander/presentation/login/login_page.dart';
 import 'package:coriander/presentation/signup/signup_page.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -49,6 +50,16 @@ class MyApp extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      }),
+                  // TODO: 完成したら消す
+                  ElevatedButton(
+                      child: Text('本一覧'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => BookListPage()),
                         );
                       })
                 ],

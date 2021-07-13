@@ -19,44 +19,50 @@ class BookListPage extends StatelessWidget {
               final books = model.books;
               final listTiles = books
                   .map(
-                    (book) => ListTile(
-                      title: Text(book.title),
-                      trailing: IconButton(
-                          icon: const Icon(Icons.edit),
-                          onPressed: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => AddBookPage(book: book),
-                                fullscreenDialog: true,
-                              ),
-                            );
-                            model.fetchBooks();
-                          }),
-                      onLongPress: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              content: Text('削除しますか？'),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(2.0))),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: const Text('OK'),
-                                  onPressed: () async {
-                                    // 削除する
-                                    await model.deleteBook(book);
-                                    await model.fetchBooks();
-                                    Navigator.of(context).pop();
-                                  },
+                    (book) => Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: ListTile(
+                        leading: Image.network(book.imageUrl.isEmpty
+                            ? 'https://pps-life.com/sp/img/blog/noImage-large.png'
+                            : book.imageUrl),
+                        title: Text(book.title),
+                        trailing: IconButton(
+                            icon: const Icon(Icons.edit),
+                            onPressed: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AddBookPage(book: book),
+                                  fullscreenDialog: true,
                                 ),
-                              ],
-                            );
-                          },
-                        );
-                      },
+                              );
+                              model.fetchBooks();
+                            }),
+                        onLongPress: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                content: Text('削除しますか？'),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(2.0))),
+                                actions: <Widget>[
+                                  TextButton(
+                                    child: const Text('OK'),
+                                    onPressed: () async {
+                                      // 削除する
+                                      await model.deleteBook(book);
+                                      await model.fetchBooks();
+                                      Navigator.of(context).pop();
+                                    },
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ),
                     ),
                   )
                   .toList();

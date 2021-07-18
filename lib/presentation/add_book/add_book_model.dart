@@ -34,7 +34,7 @@ class AddBookModel extends ChangeNotifier {
     await books.add({
       'title': this.title,
       'imageUrl': url,
-      'cratedAt': DateTime.now(),
+      'createdAt': Timestamp.now(),
     });
 
     isLoading = false;

@@ -1,4 +1,5 @@
 import 'package:coriander/presentation/add_book/add_book_page.dart';
+import 'package:coriander/presentation/menu/menu_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,6 +14,21 @@ class BookListPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: Text('本一覧'),
+            actions: [
+              Consumer<BookListModel>(builder: (context, model, child) {
+                return IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MenuPage(),
+                      ),
+                    );
+                  },
+                );
+              }),
+            ],
           ),
           body: Consumer<BookListModel>(
             builder: (context, model, child) {

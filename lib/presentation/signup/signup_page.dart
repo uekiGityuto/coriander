@@ -1,4 +1,5 @@
 import 'package:coriander/presentation/book_list/book_list_page.dart';
+import 'package:coriander/presentation/confirm/confirm_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +52,7 @@ class SignupPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BookListPage()),
+                              builder: (context) => ConfirmPage()),
                         );
                       } catch (e) {
                         await _showDialog(context, e.toString());

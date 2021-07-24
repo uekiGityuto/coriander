@@ -25,6 +25,11 @@ class SignupModel extends ChangeNotifier {
         'uid': user.uid,
         'email': user.email,
       });
+
+      // 確認メール送信
+      if (user != null && !user.emailVerified) {
+        await user.sendEmailVerification();
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         throw ('パスワードが弱いです。');
